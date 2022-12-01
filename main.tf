@@ -81,3 +81,10 @@ resource "aws_instance" "web" {
     Name = "web_instance"
   } 
 }
+resource "aws_eip_association" "eip_assoc" {
+  instance_id   = aws_instance.web.id
+  allocation_id = aws_eip.eip_manager.id
+}
+resource "aws_eip" "eip_manager" {
+  vpc = true
+}
